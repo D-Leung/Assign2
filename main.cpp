@@ -32,6 +32,7 @@ int main()
     vector<int> vserved;
     vector<string> vlname;
     vector<string> vfname;
+    int rows = 0;
 
     /*
         While loop to read, parse, and assign necessary
@@ -57,6 +58,7 @@ int main()
 
         getline(text,fname);
         vfname.push_back(fname);
+        rows++;
     }
     jail.close();
 
@@ -64,9 +66,9 @@ int main()
         For loops to assign all the variables into the
         Prisoner class array 0-50 for a total of 51 entries
     */
-    Prisoner p[100]; // Initializing Prisoner class
+    Prisoner p[rows]; // Initializing Prisoner class
 
-    for (int i = 0; i <= vidNum.size(); i++)
+    for (int i = 0; i < rows; i++)
     {
         p[i].setidNumber(vidNum[i]);
         p[i].settimeSentence(vsentence[i]);
@@ -74,6 +76,25 @@ int main()
         p[i].setlastName(vlname[i]);
         p[i].setfirstName(vfname[i]);
     }
+
+    //////////////////////////////////////////////////////////////
+
+    int a[rows];
+
+    for (int i = 0; i < rows; i++)
+        a[i] = p[i].gettimeRemain();
+
+    priority_queue<int, vector<int>, greater<int> > pq;
+
+    for (int i = 0; i < rows; i++)
+        pq.push(a[i]);
+
+    for (int i = 1; i < 7; i++)
+    {
+        cout << pq.top() << endl;
+        pq.pop();
+    }
+
 
     return 0;
 }

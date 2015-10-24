@@ -1,6 +1,8 @@
 #ifndef JAILED_H
 #define JAILED_H
 
+#include <math.h>
+
 class Jailed : public Prisoner
 {
     public:
